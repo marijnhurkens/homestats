@@ -1,4 +1,5 @@
 local/.env
 remote/.env
 /local/config/prometheus.yaml
+/remote/config/grafana.ini
 .idea

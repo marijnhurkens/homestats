@@ -26,6 +26,7 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
       - ./config/grafana/:/etc/grafana/provisioning
+      - ./config/grafana.ini:/usr/local/etc/grafana/grafana.ini
 
 volumes:
   mimir-data:
