@@ -1,0 +1,64 @@
+---
+modules:
+  homewizard_p1:
+    metrics:
+      - name: active_power_w
+        path: "{ .active_power_w }"
+        labels:
+          group: "p1"
+      - name: active_power_l1_w
+        path: "{ .active_power_l1_w }"
+        labels:
+          group: "p1"
+      - name: active_power_l2_w
+        path: "{ .active_power_l2_w }"
+        labels:
+          group: "p1"
+      - name: active_power_l3_w
+        path: "{ .active_power_l3_w }"
+        labels:
+          group: "p1"
+      - name: active_voltage_l1_v
+        path: "{ .active_voltage_l1_v }"
+        labels:
+          group: "p1"
+      - name: active_voltage_l2_v
+        path: "{ .active_voltage_l2_v }"
+        labels:
+          group: "p1"
+      - name: active_voltage_l3_v
+        path: "{ .active_voltage_l3_v }"
+        labels:
+          group: "p1"
+      - name: active_current_a
+        path: "{ .active_current_a }"
+        labels:
+          group: "p1"
+      - name: active_current_l1_a
+        path: "{ .active_current_l1_a }"
+        labels:
+          group: "p1"
+      - name: active_current_l2_a
+        path: "{ .active_current_l2_a }"
+        labels:
+          group: "p1"
+      - name: active_current_l3_a
+        path: "{ .active_current_l3_a }"
+        labels:
+          group: "p1"
+      - name: total_power_import_kwh
+        path: "{ .total_power_import_kwh }"
+        labels:
+          group: "p1"
+      - name: total_power_import_t1_kwh
+        path: "{ .total_power_import_t1_kwh }"
+        labels:
+          group: "p1"
+      - name: total_power_import_t2_kwh
+        path: "{ .total_power_import_t2_kwh }"
+        labels:
+          group: "p1"
+      - name: total_gas_m3
+        path: "{ .total_gas_m3 }"
+        labels:
+          group: "p1"

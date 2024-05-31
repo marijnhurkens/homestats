@@ -1,0 +1,14 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9002:9090"
+
+  json_exporter:
+    image: prometheuscommunity/json-exporter:latest
+    volumes:
+      - ./config/json_exporter.yaml:/config/config.yml
+    command:
+      - '--config.file=/config/config.yml'

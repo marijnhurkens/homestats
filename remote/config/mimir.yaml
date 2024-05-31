@@ -1,0 +1,44 @@
+multitenancy_enabled: false
+
+common:
+  storage:
+    backend: s3
+    s3:
+      endpoint: s3.eu-west-1.amazonaws.com
+      region: "${AWS_REGION}"
+      secret_access_key: "${AWS_SECRET_ACCESS_KEY}" # This is a secret injected via an environment variable
+      access_key_id: "${AWS_ACCESS_KEY_ID}" # This is a secret injected via an environment variable
+
+
+blocks_storage:
+  storage_prefix: "blocks"
+  s3:
+    bucket_name: "${AWS_S3_BUCKET_MIMIR}"
+  bucket_store:
+    sync_interval: 5m
+    ignore_blocks_within: 0s
+
+ruler_storage:
+  storage_prefix: "ruler"
+  s3:
+    bucket_name: "${AWS_S3_BUCKET_MIMIR}"
+
+ingester:
+  ring:
+    replication_factor: 1
+
+compactor:
+  data_dir: /tmp/mimir/compactor
+  cleanup_interval: 5m
+  sharding_ring:
+    kvstore:
+      store: memberlist
+
+distributor:
+  ring:
+    kvstore:
+      store: memberlist
+
+querier:
+  query_store_after: 0s
+  shuffle_sharding_ingesters_enabled: false

@@ -1,0 +1,4 @@
+datasources:
+  - name: Mimir
+    type: prometheus
+    url: http://mimir:8080/prometheus
