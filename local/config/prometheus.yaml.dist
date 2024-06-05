@@ -24,3 +24,6 @@ scrape_configs:
 
 remote_write:
   - url: http://$MIMIR_HOST/api/v1/push
+    basic_auth:
+        username: $MIMIR_USERNAME
+        password: $MIMIR_PASSWORD
