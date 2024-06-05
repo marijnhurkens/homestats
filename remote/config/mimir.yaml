@@ -9,11 +9,6 @@ common:
       secret_access_key: "${AWS_SECRET_ACCESS_KEY}" # This is a secret injected via an environment variable
       access_key_id: "${AWS_ACCESS_KEY_ID}" # This is a secret injected via an environment variable
 
-nginx:
-  basicAuth:
-    enabled: true
-    username: ${MIMIR_USERNAME}
-    password: ${MIMIR_PASSWORD}
 
 blocks_storage:
   storage_prefix: "blocks"
