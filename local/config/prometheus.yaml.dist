@@ -23,7 +23,7 @@ scrape_configs:
         replacement: json_exporter:7979
 
 remote_write:
-  - url: http://$MIMIR_HOST/api/v1/push
+  - url: $MIMIR_URL/api/v1/push
     basic_auth:
         username: $MIMIR_USERNAME
         password: $MIMIR_PASSWORD
