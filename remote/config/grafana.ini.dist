@@ -10,6 +10,7 @@ client_secret = $OAUTH_CLIENT_SECRET
 auth_url = $OAUTH_URL/authorize
 token_url = $OAUTH_URL/token
 api_url = $OAUTH_URL/userInfo
+use_refresh_token = true
 
 [users]
 auto_assign_org_role = Admin
