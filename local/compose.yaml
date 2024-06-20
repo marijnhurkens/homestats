@@ -1,8 +1,10 @@
 services:
   prometheus:
-    image: prom/prometheus:latest
+    build:
+      dockerfile: ./docker/prometheus.Dockerfile
+      context: .
     volumes:
-      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./config/prometheus.yaml:/opt/bitnami/prometheus/prometheus.yml
     ports:
       - "9002:9090"
     command:
