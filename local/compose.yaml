@@ -1,6 +1,5 @@
 services:
   prometheus:
-    network_mode: host
     image: bitnami/prometheus:latest
     volumes:
       - ./config/prometheus.yaml:/opt/bitnami/prometheus/prometheus.yml
@@ -10,7 +9,6 @@ services:
       - '--log.level=debug'
 
   json_exporter:
-    network_mode: host
     image: prometheuscommunity/json-exporter:latest
     volumes:
       - ./config/json_exporter.yaml:/config/config.yml
