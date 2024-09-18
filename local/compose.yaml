@@ -1,21 +1,17 @@
 services:
   prometheus:
-    build:
-      dockerfile: ./docker/prometheus.Dockerfile
-      context: .
+    network_mode: host
+    image: bitnami/prometheus:latest
     volumes:
       - ./config/prometheus.yaml:/opt/bitnami/prometheus/prometheus.yml
       - /var/run/dbus:/var/run/dbus
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
-    ports:
-      - "9002:9090"
     command:
       - '--log.level=debug'
 
   json_exporter:
-    build:
-      dockerfile: ./docker/json_exporter.Dockerfile
-      context: .
+    network_mode: host
+    image: prometheuscommunity/json-exporter:latest
     volumes:
       - ./config/json_exporter.yaml:/config/config.yml
       - /var/run/dbus:/var/run/dbus
