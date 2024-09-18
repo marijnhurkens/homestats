@@ -13,8 +13,12 @@ services:
       - '--log.level=debug'
 
   json_exporter:
-    image: prometheuscommunity/json-exporter:latest
+    build:
+      dockerfile: ./docker/json_exporter.Dockerfile
+      context: .
     volumes:
       - ./config/json_exporter.yaml:/config/config.yml
+      - /var/run/dbus:/var/run/dbus
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
     command:
       - '--config.file=/config/config.yml'
