@@ -46,6 +46,38 @@ modules:
         path: "{ .active_current_l3_a }"
         labels:
           group: "p1"
+      - name: voltage_sag_l1_count
+        path: "{ .voltage_sag_l1_count }"
+        labels:
+          group: "p1"
+      - name: voltage_sag_l2_count
+        path: "{ .voltage_sag_l2_count }"
+        labels:
+          group: "p1"
+      - name: voltage_sag_l3_count
+        path: "{ .voltage_sag_l3_count }"
+        labels:
+          group: "p1"
+      - name: voltage_swell_l1_count
+        path: "{ .voltage_swell_l1_count }"
+        labels:
+          group: "p1"
+      - name: voltage_swell_l2_count
+        path: "{ .voltage_swell_l2_count }"
+        labels:
+          group: "p1"
+      - name: voltage_swell_l3_count
+        path: "{ .voltage_swell_l3_count }"
+        labels:
+          group: "p1"
+      - name: any_power_fail_count
+        path: "{ .any_power_fail_count }"
+        labels:
+          group: "p1"
+      - name: long_power_fail_count
+        path: "{ .long_power_fail_count }"
+        labels:
+          group: "p1"
       - name: total_power_import_kwh
         path: "{ .total_power_import_kwh }"
         labels:
@@ -62,3 +94,50 @@ modules:
         path: "{ .total_gas_m3 }"
         labels:
           group: "p1"
+  homewizard_kwh:
+    metrics:
+      - name: active_power_w
+        path: "{ .active_power_w }"
+        labels:
+          group: "kwh"
+      - name: active_voltage_v
+        path: "{ .active_voltage_v }"
+        labels:
+          group: "kwh"
+      - name: active_current_a
+        path: "{ .active_current_a }"
+        labels:
+          group: "kwh"
+      - name: active_apparent_current_a
+        path: "{ .active_apparent_current_a }"
+        labels:
+          group: "kwh"
+      - name: active_reactive_current_a
+        path: "{ .active_reactive_current_a }"
+        labels:
+          group: "kwh"
+      - name: active_apparent_power_va
+        path: "{ .active_apparent_power_va }"
+        labels:
+          group: "kwh"
+      - name: active_reactive_power_var
+        path: "{ .active_reactive_power_var }"
+        labels:
+          group: "kwh"
+      - name: active_power_factor
+        path: "{ .active_power_factor }"
+        labels:
+          group: "kwh"
+      - name: active_frequency_hz
+        path: "{ .active_frequency_hz }"
+        labels:
+          group: "kwh"
+      - name: total_power_import_kwh
+        path: "{ .total_power_import_kwh }"
+        labels:
+          group: "kwh"
+      - name: total_power_export_kwh
+        path: "{ .total_power_export_kwh }"
+        labels:
+          group: "kwh"
+

@@ -2,7 +2,7 @@
 root_url = $GRAFANA_ROOT_URL
 
 [auth.generic_oauth]
-enabled = true
+enabled = false
 scopes = email profile openid
 auto_login = true
 client_id = $OAUTH_CLIENT_ID

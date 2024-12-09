@@ -20,3 +20,11 @@ services:
       - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
     command:
       - '--config.file=/config/config.yml'
+
+  my_uplink_exporter:
+    image: webdevops/myuplink-exporter:latest
+    ports:
+      - "9003:8080"
+    environment:
+      - MYUPLINK_AUTH_CLIENTID=${MYUPLINK_AUTH_CLIENTID}
+      - MYUPLINK_AUTH_CLIENTSECRET=${MYUPLINK_AUTH_CLIENTSECRET}
