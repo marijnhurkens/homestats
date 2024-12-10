@@ -448,6 +448,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "myuplink_system_device_point{meter=\"nibe_heatpump\", parameterID=\"50096\"}",
+          "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1222,7 +1223,7 @@
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -1613,6 +1614,6 @@
   "timezone": "browser",
   "title": "Heat pump",
   "uid": "fe6f54lcbjls0b",
-  "version": 26,
+  "version": 27,
   "weekStart": ""
 }
