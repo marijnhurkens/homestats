@@ -73,7 +73,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -83,7 +83,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": true,
-          "expr": "active_power_w",
+          "expr": "active_power_w{meter=\"p1\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -156,7 +156,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -219,6 +219,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -230,7 +231,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -239,7 +240,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "increase(total_power_import_kwh[$__range])",
+          "expr": "increase(total_power_import_kwh{meter=\"p1\"}[$__range])",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -306,6 +307,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -317,7 +319,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -326,7 +328,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "increase(total_power_import_t1_kwh[$__range]) * $electricity_price_t1",
+          "expr": "increase(total_power_import_t1_kwh{meter=\"p1\"}[$__range]) * $electricity_price_t1",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -343,7 +345,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "increase(total_power_import_t2_kwh[$__range]) * $electricity_price_t2",
+          "expr": "increase(total_power_import_t2_kwh{meter=\"p1\"}[$__range]) * $electricity_price_t2",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -398,7 +400,8 @@
             "axisPlacement": "auto",
             "axisWidth": 70,
             "barAlignment": 0,
-            "drawStyle": "bars",
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -408,6 +411,9 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -461,6 +467,7 @@
           "sort": "none"
         }
       },
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -473,7 +480,7 @@
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{meter}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -501,6 +508,7 @@
             "axisPlacement": "auto",
             "axisWidth": 70,
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -565,7 +573,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
@@ -589,20 +597,18 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "10s",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "0.34461",
           "value": "0.34461"
         },
-        "hide": 0,
         "includeAll": false,
-        "multi": false,
         "name": "electricity_price_t1",
         "options": [
           {
@@ -612,18 +618,14 @@
           }
         ],
         "query": "0.34461",
-        "skipUrlSync": false,
         "type": "custom"
       },
       {
         "current": {
-          "selected": false,
           "text": "0.39338",
           "value": "0.39338"
         },
-        "hide": 0,
         "includeAll": false,
-        "multi": false,
         "name": "electricity_price_t2",
         "options": [
           {
@@ -633,18 +635,14 @@
           }
         ],
         "query": "0.39338",
-        "skipUrlSync": false,
         "type": "custom"
       },
       {
         "current": {
-          "selected": false,
           "text": "1.33083",
           "value": "1.33083"
         },
-        "hide": 0,
         "includeAll": false,
-        "multi": false,
         "name": "fixed_electricity_costs_day",
         "options": [
           {
@@ -654,7 +652,6 @@
           }
         ],
         "query": "1.33083",
-        "skipUrlSync": false,
         "type": "custom"
       }
     ]
@@ -663,11 +660,10 @@
     "from": "now-1h",
     "to": "now"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "browser",
   "title": "Electricity",
   "uid": "ddn5zzwhbwxdsc",
-  "version": 18,
+  "version": 2,
   "weekStart": "monday"
 }
