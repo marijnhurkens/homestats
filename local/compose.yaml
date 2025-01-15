@@ -21,10 +21,15 @@ services:
     command:
       - '--config.file=/config/config.yml'
 
-  my_uplink_exporter:
-    image: webdevops/myuplink-exporter:latest
+  nibe_gateway:
+    build: https://github.com/garo/nibe-gateway.git
     ports:
-      - "9003:8080"
+      - "9003:3000"
+      - "9999:9999/udp"
+    volumes:
+      - /var/run/dbus:/var/run/dbus
+      - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+      - ./config/variableinfo.json:/app/variableinfo.json
     environment:
-      - MYUPLINK_AUTH_CLIENTID=${MYUPLINK_AUTH_CLIENTID}
-      - MYUPLINK_AUTH_CLIENTSECRET=${MYUPLINK_AUTH_CLIENTSECRET}
+      GATEWAY_ADDRESS: nibegw.local
+

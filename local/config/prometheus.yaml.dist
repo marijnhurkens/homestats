@@ -13,9 +13,9 @@ scrape_configs:
       module: [ homewizard_p1 ]
     static_configs:
       - labels:
-        - meter: "p1"
-      - targets:
-          - http://$HOME_WIZARD_P1_IP_ADDR/api/v1/data
+          meter: "p1"
+        targets:
+          - http://p1meter-19ce16.local/api/v1/data
     relabel_configs:
       - source_labels: [ __address__ ]
         target_label: __param_target
@@ -30,9 +30,9 @@ scrape_configs:
       module: [ homewizard_kwh ]
     static_configs:
       - labels:
-        - meter: "kwh_boiler"
-      - targets:
-          - http://$HOME_WIZARD_KWH_1_IP_ADDR/api/v1/data
+          meter: "kwh_boiler"
+        targets:
+          - http://kwhmeter-1dbc50.local/api/v1/data
     relabel_configs:
       - source_labels: [ __address__ ]
         target_label: __param_target
@@ -47,9 +47,9 @@ scrape_configs:
       module: [ homewizard_kwh ]
     static_configs:
       - labels:
-        - meter: "kwh_heat_pump"
-      - targets:
-          - http://$HOME_WIZARD_KWH_2_IP_ADDR/api/v1/data
+          meter: "kwh_heat_pump"
+        targets:
+          - http://kwhmeter-1ddc1e.local/api/v1/data
     relabel_configs:
       - source_labels: [ __address__ ]
         target_label: __param_target
@@ -58,8 +58,17 @@ scrape_configs:
       - target_label: __address__
         replacement: json_exporter:7979
 
+
+  - job_name: nibe_gateway
+    static_configs:
+      - targets: [ "nibe_gateway" ]
+      - labels:
+          meter: "nibe_heatpump"
+
+
+
 remote_write:
-  - url: $MIMIR_URL/api/v1/push
+  - url: http://host.docker.internal:9001/api/v1/push
     basic_auth:
-        username: $MIMIR_USERNAME
-        password: $MIMIR_PASSWORD
+        username: bla
+        password: psswrodnbvbnv

@@ -47,24 +47,18 @@
           "mappings": [
             {
               "options": {
-                "60": {
+                "0": {
+                  "color": "semi-dark-red",
+                  "index": 1,
+                  "text": "Off"
+                },
+                "1": {
                   "color": "semi-dark-green",
                   "index": 0,
                   "text": "On"
                 }
               },
               "type": "value"
-            },
-            {
-              "options": {
-                "pattern": "20",
-                "result": {
-                  "color": "semi-dark-red",
-                  "index": 1,
-                  "text": "Off"
-                }
-              },
-              "type": "regex"
             }
           ],
           "thresholds": {
@@ -115,7 +109,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "myuplink_system_device_point{meter=\"nibe_heatpump\",parameterID=\"44064\"}",
+          "expr": "nibe_register{coilAddress=\"44457\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -189,7 +183,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "myuplink_system_device_point{meter=\"nibe_heatpump\",parameterID=\"44701\"}",
+          "expr": "nibe_register{coilAddress=\"44701\"}",
           "instant": false,
           "legendFormat": "Compressor frequency",
           "range": true,
@@ -294,7 +288,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "{meter=\"nibe_heatpump\", parameterID=\"40033\"}",
+          "expr": "nibe_register{coilAddress=\"40033\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -370,7 +364,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "{meter=\"nibe_heatpump\", parameterID=\"43009\"}",
+          "expr": "nibe_register{coilAddress=\"43009\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -447,7 +441,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "myuplink_system_device_point{meter=\"nibe_heatpump\", parameterID=\"50096\"}",
+          "expr": "myuplink_system_device_pointnibe_register{coilAddress=\"50096\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -585,7 +579,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "{meter=\"nibe_heatpump\", parameterID=\"40004\"}",
+          "expr": "nibe_register{coilAddress=\"40004\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -657,7 +651,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "myuplink_system_device_point{meter=\"nibe_heatpump\",parameterID=\"40940\"}",
+          "expr": "nibe_register{coilAddress=\"43005\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -991,7 +985,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "{meter=\"nibe_heatpump\", parameterID=\"43009\"}",
+          "expr": "nibe_register{coilAddress=\"43009\"}",
           "instant": false,
           "legendFormat": "Calculated supply",
           "range": true,
@@ -1003,7 +997,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": " {meter=\"nibe_heatpump\", parameterID=\"40152\"}",
+          "expr": " nibe_register{coilAddress=\"40152\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "Return temp (Bt 71)",
@@ -1016,7 +1010,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": " {meter=\"nibe_heatpump\", parameterID=\"40071\"}",
+          "expr": " nibe_register{coilAddress=\"40071\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "Supply temp (Bt 25)",
@@ -1115,7 +1109,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "{meter=\"nibe_heatpump\", parameterID=\"40033\"}",
+          "expr": "nibe_register{coilAddress=\"40033\"}",
           "instant": false,
           "legendFormat": "Indoor temp. (Bt 50)",
           "range": true,
@@ -1127,7 +1121,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "{meter=\"nibe_heatpump\", parameterID=\"40004\"}",
+          "expr": "nibe_register{coilAddress=\"40004\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "Outdoor temp. (Bt 1)",
@@ -1240,7 +1234,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "{meter=\"nibe_heatpump\", parameterID=\"40940\"}",
+          "expr": "nibe_register{coilAddress=\"43005\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1256,7 +1250,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "myuplink_system_device_point{meter=\"nibe_heatpump\",parameterID=\"40071\"}",
+          "expr": "nibe_register{coilAddress=\"40071\"}",
           "hide": true,
           "instant": false,
           "legendFormat": "__auto",
@@ -1269,7 +1263,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "myuplink_system_device_point{meter=\"nibe_heatpump\",parameterID=\"43009\"}",
+          "expr": "nibe_register{coilAddress=\"43009\"}",
           "hide": true,
           "instant": false,
           "legendFormat": "__auto",
@@ -1379,7 +1373,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "{meter=\"nibe_heatpump\",parameterID=\"40782\"}",
+          "expr": "nibe_register{coilAddress=\"40782\"}",
           "instant": false,
           "legendFormat": "Requested frequency",
           "range": true,
@@ -1391,7 +1385,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "{meter=\"nibe_heatpump\",parameterID=\"44701\"}",
+          "expr": "nibe_register{coilAddress=\"44701\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "Actual frequency",
@@ -1490,7 +1484,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "myuplink_system_device_point{meter=\"nibe_heatpump\",parameterID=\"44363\"}",
+          "expr": "nibe_register{coilAddress=\"44363\"}",
           "instant": false,
           "legendFormat": "Evaporator temperature",
           "range": true,
@@ -1614,6 +1608,6 @@
   "timezone": "browser",
   "title": "Heat pump",
   "uid": "fe6f54lcbjls0b",
-  "version": 27,
+  "version": 33,
   "weekStart": ""
 }
