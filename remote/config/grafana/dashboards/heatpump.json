@@ -440,8 +440,8 @@
             "uid": "PAE45454D0EDB9216"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "myuplink_system_device_pointnibe_register{coilAddress=\"50096\"}",
+          "editorMode": "code",
+          "expr": "nibe_register{coilAddress=\"50096\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -687,27 +687,13 @@
             {
               "options": {
                 "0": {
-                  "color": "#808080",
-                  "index": 4
-                },
-                "10187": {
-                  "color": "yellow",
-                  "index": 3,
-                  "text": "defrost"
-                },
-                "15003": {
                   "color": "green",
                   "index": 0,
                   "text": "off"
                 },
-                "15004": {
-                  "color": "blue",
-                  "index": 1,
-                  "text": "hot water"
-                },
-                "15005": {
+                "1": {
                   "color": "red",
-                  "index": 2,
+                  "index": 1,
                   "text": "heating"
                 }
               },
@@ -762,7 +748,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "myuplink_system_device_point{parameterID=\"50096\"}",
+          "expr": "nibe_register{coilAddress=\"44457\"}",
           "instant": false,
           "legendFormat": "status",
           "range": true,
@@ -798,27 +784,13 @@
             {
               "options": {
                 "0": {
-                  "color": "#808080",
-                  "index": 4
-                },
-                "10187": {
-                  "color": "yellow",
-                  "index": 3,
-                  "text": "defrost"
-                },
-                "15003": {
                   "color": "green",
                   "index": 0,
                   "text": "off"
                 },
-                "15004": {
-                  "color": "blue",
-                  "index": 1,
-                  "text": "hot water"
-                },
-                "15005": {
+                "1": {
                   "color": "red",
-                  "index": 2,
+                  "index": 1,
                   "text": "heating"
                 }
               },
@@ -873,7 +845,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "myuplink_system_device_point{parameterID=\"50096\"}",
+          "expr": "nibe_register{coilAddress=\"44457\"}",
           "instant": false,
           "legendFormat": "status",
           "range": true,
@@ -1608,6 +1580,6 @@
   "timezone": "browser",
   "title": "Heat pump",
   "uid": "fe6f54lcbjls0b",
-  "version": 33,
+  "version": 34,
   "weekStart": ""
 }
