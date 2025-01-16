@@ -423,7 +423,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
@@ -474,7 +474,7 @@
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "abs((550*4186*($supply-$return))/3600)",
+          "expression": "abs((580*4186*($supply-$return))/3600)",
           "hide": true,
           "refId": "power_generated",
           "type": "math"
@@ -485,8 +485,8 @@
             "uid": "PAE45454D0EDB9216"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "avg_over_time(active_power_w{meter=\"kwh_heat_pump\"}[10m])",
+          "editorMode": "code",
+          "expr": "abs(avg_over_time(active_power_w{meter=\"kwh_heat_pump\"}[10m])-41)",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
@@ -508,7 +508,7 @@
           "type": "math"
         }
       ],
-      "title": "Average COP",
+      "title": "Current COP",
       "type": "gauge"
     },
     {
@@ -720,6 +720,114 @@
           "color": {
             "mode": "thresholds"
           },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 9,
+        "y": 6
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PAE45454D0EDB9216"
+          },
+          "editorMode": "code",
+          "expr": "nibe_register{coilAddress=\"40071\"} ",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PAE45454D0EDB9216"
+          },
+          "editorMode": "code",
+          "expr": "nibe_register{coilAddress=\"43009\"}",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "(160 - abs($minutes))/($B - $A)",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PAE45454D0EDB9216"
+          },
+          "editorMode": "code",
+          "expr": "nibe_register{coilAddress=\"43005\"}",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "minutes"
+        }
+      ],
+      "title": "Est. time till start",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PAE45454D0EDB9216"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [
             {
               "options": {
@@ -777,7 +885,7 @@
       "gridPos": {
         "h": 5,
         "w": 4,
-        "x": 9,
+        "x": 13,
         "y": 6
       },
       "id": 10,
@@ -848,7 +956,7 @@
       "gridPos": {
         "h": 5,
         "w": 4,
-        "x": 13,
+        "x": 17,
         "y": 6
       },
       "id": 13,
@@ -2167,7 +2275,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "COP {__name__=\"active_power_w\", group=\"kwh\", instance=\"http://kwhmeter-1ddc1e.local/api/v1/data\", job=\"homewizard_kwh_2\", meter=\"kwh_heat_pump\"}"
+              "options": "COP"
             },
             "properties": [
               {
@@ -2259,7 +2367,7 @@
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "(550*4186*($supply-$return))/3600",
+          "expression": "(580*4186*($supply-$return))/3600",
           "hide": false,
           "refId": "power_generated",
           "type": "math"
@@ -2270,7 +2378,7 @@
             "uid": "PAE45454D0EDB9216"
           },
           "editorMode": "code",
-          "expr": "active_power_w{meter=\"kwh_heat_pump\"}",
+          "expr": "active_power_w{meter=\"kwh_heat_pump\"}-41",
           "hide": false,
           "instant": false,
           "legendFormat": "Power cost",
@@ -2308,6 +2416,6 @@
   "timezone": "browser",
   "title": "Heat pump",
   "uid": "fe6f54lcbjls0b",
-  "version": 41,
+  "version": 43,
   "weekStart": ""
 }
