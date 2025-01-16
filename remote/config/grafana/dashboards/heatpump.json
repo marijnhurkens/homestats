@@ -155,7 +155,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
+        "w": 4,
         "x": 5,
         "y": 1
       },
@@ -259,8 +259,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
-        "x": 10,
+        "w": 4,
+        "x": 9,
         "y": 1
       },
       "id": 11,
@@ -333,8 +333,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
-        "x": 15,
+        "w": 4,
+        "x": 13,
         "y": 1
       },
       "id": 12,
@@ -375,6 +375,140 @@
         }
       ],
       "title": "Calculated supply temperature",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PAE45454D0EDB9216"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 6,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1.5
+              },
+              {
+                "color": "green",
+                "value": 2.5
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 17,
+        "y": 1
+      },
+      "id": 24,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PAE45454D0EDB9216"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "avg_over_time(nibe_register{coilAddress=\"40071\"}[10m])",
+          "fullMetaSearch": false,
+          "hide": true,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "supply",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PAE45454D0EDB9216"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "avg_over_time(nibe_register{coilAddress=\"40152\"}[10m])",
+          "fullMetaSearch": false,
+          "hide": true,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "return",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "abs((550*4186*($supply-$return))/3600)",
+          "hide": true,
+          "refId": "power_generated",
+          "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PAE45454D0EDB9216"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "avg_over_time(active_power_w{meter=\"kwh_heat_pump\"}[10m])",
+          "fullMetaSearch": false,
+          "hide": true,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Power cost",
+          "range": true,
+          "refId": "power_cost",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$power_generated / $power_cost",
+          "hide": false,
+          "refId": "COP",
+          "type": "math"
+        }
+      ],
+      "title": "Average COP",
       "type": "gauge"
     },
     {
@@ -498,7 +632,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
+        "w": 4,
         "x": 5,
         "y": 6
       },
@@ -642,8 +776,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
-        "x": 10,
+        "w": 4,
+        "x": 9,
         "y": 6
       },
       "id": 10,
@@ -713,8 +847,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
-        "x": 15,
+        "w": 4,
+        "x": 13,
         "y": 6
       },
       "id": 13,
@@ -2125,7 +2259,7 @@
             "type": "__expr__",
             "uid": "__expr__"
           },
-          "expression": "(500*4186*($supply-$return))/3600",
+          "expression": "(550*4186*($supply-$return))/3600",
           "hide": false,
           "refId": "power_generated",
           "type": "math"
