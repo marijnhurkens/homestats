@@ -387,9 +387,21 @@
           "color": {
             "mode": "thresholds"
           },
+          "custom": {
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
           "mappings": [],
           "max": 30,
           "min": 0,
+          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -398,12 +410,12 @@
                 "value": null
               },
               {
-                "color": "yellow",
-                "value": 10
+                "color": "semi-dark-green",
+                "value": 0
               },
               {
-                "color": "red",
-                "value": 15
+                "color": "dark-red",
+                "value": 1
               }
             ]
           }
@@ -418,19 +430,19 @@
       },
       "id": 9,
       "options": {
-        "minVizHeight": 75,
-        "minVizWidth": 75,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "sizing": "auto"
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "pluginVersion": "11.4.0",
       "targets": [
@@ -440,8 +452,8 @@
             "uid": "PAE45454D0EDB9216"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "nibe_register{coilAddress=\"50096\"}",
+          "editorMode": "builder",
+          "expr": "nibe_register{coilAddress=\"44703\"}",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -454,35 +466,7 @@
       ],
       "timeFrom": "24h",
       "title": "Defrosts last 24h",
-      "transformations": [
-        {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "equal",
-                  "options": {
-                    "value": "10187"
-                  }
-                },
-                "fieldName": "defrost"
-              }
-            ],
-            "match": "any",
-            "type": "include"
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "reducers": [
-              "count"
-            ]
-          }
-        }
-      ],
-      "type": "gauge"
+      "type": "state-timeline"
     },
     {
       "datasource": {
@@ -806,6 +790,18 @@
                 }
               },
               "type": "value"
+            },
+            {
+              "options": {
+                "from": 2,
+                "result": {
+                  "color": "semi-dark-blue",
+                  "index": 2,
+                  "text": "defrosting"
+                },
+                "to": 3
+              },
+              "type": "range"
             }
           ],
           "noValue": "0",
@@ -854,13 +850,38 @@
             "type": "prometheus",
             "uid": "PAE45454D0EDB9216"
           },
-          "editorMode": "code",
+          "editorMode": "builder",
           "exemplar": false,
           "expr": "nibe_register{coilAddress=\"44457\"}",
+          "hide": true,
           "instant": false,
           "legendFormat": "status",
           "range": true,
-          "refId": "status"
+          "refId": "compressor"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PAE45454D0EDB9216"
+          },
+          "editorMode": "code",
+          "expr": "nibe_register{coilAddress=\"44703\"}",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "defrosting"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$compressor+($defrosting*2)",
+          "hide": false,
+          "refId": "B",
+          "type": "math"
         }
       ],
       "title": "Status",
@@ -903,6 +924,18 @@
                 }
               },
               "type": "value"
+            },
+            {
+              "options": {
+                "from": 2,
+                "result": {
+                  "color": "semi-dark-blue",
+                  "index": 2,
+                  "text": "defrosting"
+                },
+                "to": 3
+              },
+              "type": "range"
             }
           ],
           "noValue": "0",
@@ -928,7 +961,7 @@
         "x": 0,
         "y": 16
       },
-      "id": 16,
+      "id": 22,
       "options": {
         "alignValue": "left",
         "legend": {
@@ -951,16 +984,41 @@
             "type": "prometheus",
             "uid": "PAE45454D0EDB9216"
           },
-          "editorMode": "code",
+          "editorMode": "builder",
           "exemplar": false,
           "expr": "nibe_register{coilAddress=\"44457\"}",
+          "hide": true,
           "instant": false,
           "legendFormat": "status",
           "range": true,
-          "refId": "status"
+          "refId": "compressor"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PAE45454D0EDB9216"
+          },
+          "editorMode": "code",
+          "expr": "nibe_register{coilAddress=\"44703\"}",
+          "hide": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "defrosting"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$compressor+($defrosting*2)",
+          "hide": false,
+          "refId": "B",
+          "type": "math"
         }
       ],
-      "timeFrom": "7d",
+      "timeFrom": "24h",
       "title": "Status",
       "type": "state-timeline"
     },
@@ -1828,12 +1886,24 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Rate of change"
+              "options": "degree minutes"
             },
             "properties": [
               {
                 "id": "custom.axisPlacement",
-                "value": "auto"
+                "value": "left"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Derivative"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
               }
             ]
           }
@@ -1883,37 +1953,18 @@
             "type": "prometheus",
             "uid": "PAE45454D0EDB9216"
           },
+          "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "nibe_register{coilAddress=\"40071\"}",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "return"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PAE45454D0EDB9216"
-          },
-          "editorMode": "code",
-          "expr": "nibe_register{coilAddress=\"43009\"}",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "calc"
-        },
-        {
-          "datasource": {
-            "name": "Expression",
-            "type": "__expr__",
-            "uid": "__expr__"
-          },
-          "expression": "$return - $calc",
+          "expr": "deriv(nibe_register{coilAddress=\"43005\"}[5m]) * 60",
+          "fullMetaSearch": false,
           "hide": false,
-          "refId": "Rate of change",
-          "type": "math"
+          "includeNullMetadata": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Derivative",
+          "range": true,
+          "refId": "Derivative",
+          "useBackend": false
         }
       ],
       "title": "Degree minutes",
@@ -1935,6 +1986,6 @@
   "timezone": "browser",
   "title": "Heat pump",
   "uid": "fe6f54lcbjls0b",
-  "version": 37,
+  "version": 38,
   "weekStart": ""
 }
